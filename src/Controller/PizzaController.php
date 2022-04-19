@@ -21,7 +21,6 @@ class PizzaController extends AbstractController
             'categories' => $categories
         ]);
     }
-
     /**
      * @Route("/categories/{cat}")
      */
