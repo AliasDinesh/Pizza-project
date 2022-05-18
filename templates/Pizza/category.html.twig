@@ -1,4 +1,19 @@
 {% extends 'base.html.twig' %}
 
+
+<div class="row gy-3">
+    {%  for pizza in pizzas %}
+        <div class="col-4">
+            <div class="card text-white bg-dark" style="width: 18rem;">
+                <img src="/img/{{ pizza.name}}" class="card-img-top" alt="{{ pizza.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pizza.name }}</h5>
+                    <a href="menu" class="btn btn-text-white bg-dark">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
 {% block title %}Pizza {% endblock %}
 
