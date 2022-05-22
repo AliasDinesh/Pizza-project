@@ -2,42 +2,61 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
+use App\Repository\OrderPizzaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table(name: '`order`')]
-class Order
+/**
+ * @ORM\Entity(repositoryClass=OrderPizzaRepository::class)
+ * @ORM\Table(name="`orderpizza`")
+ */
+class OrderPizza
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $fname;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $sname;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $address;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adress;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $city;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $zipcode;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $status;
 
-    #[ORM\Column(type: 'integer')]
-    private $size;
-
-    #[ORM\ManyToOne(targetEntity: Pizza::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @ORM\ManyToOne(targetEntity=Pizza::class, inversedBy="orders")
+     */
     private $pizza;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $size;
 
     public function getId(): ?int
     {
@@ -68,14 +87,14 @@ class Order
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAdress(): ?string
     {
-        return $this->address;
+        return $this->adress;
     }
 
-    public function setAddress(string $address): self
+    public function setAdress(string $adress): self
     {
-        $this->address = $address;
+        $this->adress = $adress;
 
         return $this;
     }
@@ -116,18 +135,6 @@ class Order
         return $this;
     }
 
-    public function getSize(): ?int
-    {
-        return $this->size;
-    }
-
-    public function setSize(int $size): self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
     public function getPizza(): ?Pizza
     {
         return $this->pizza;
@@ -136,6 +143,18 @@ class Order
     public function setPizza(?Pizza $pizza): self
     {
         $this->pizza = $pizza;
+
+        return $this;
+    }
+
+    public function getSize(): ?int
+    {
+        return $this->size;
+    }
+
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }

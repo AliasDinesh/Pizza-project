@@ -1,19 +1,30 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Pizzas {% endblock %}
 
-<div class="row gy-3">
-    {%  for pizza in pizzas %}
-        <div class="col-4">
-            <div class="card text-white bg-dark" style="width: 18rem;">
-                <img src="/img/{{ pizza.name}}" class="card-img-top" alt="{{ pizza.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ pizza.name }}</h5>
-                    <a href="menu" class="btn btn-text-white bg-dark">Go somewhere</a>
-                </div>
+{% block body %}
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {%  for pizza in pizzas %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img src="/img/categories/{{ pizza.img}}.jpeg" class="card-img-top" alt="{{ pizza.name }}">
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">{{ pizza.name }}</h5>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_order', {id: pizza.id}) }}">Order Pizza</a></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
-</div>
+    </section>
 
-{% block title %}Pizza {% endblock %}
+{% endblock %}
 
